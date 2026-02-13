@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ennodu neeyum · valentine</title>
+    <!-- tamil ❤️ love theme · pages unfold like a letter -->
+    <style>
+        /* ----- soft valentine reset ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #ffdde1 0%, #f9c9d1 100%);
+            font-family: 'Quicksand', 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.8rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* floating hearts backdrop */
+        .bg-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .bg-heart {
+            position: absolute;
+            color: rgba(255, 120, 140, 0.2);
+            font-size: 3.2rem;
+            animation: float 18s infinite ease-in-out;
+            user-select: none;
+        }
+        .bg-heart:nth-child(1) { top: 6%; left: 3%; animation-delay: 0s; font-size: 4.2rem; }
+        .bg-heart:nth-child(2) { top: 73%; left: 15%; animation-delay: 2.5s; }
+        .bg-heart:nth-child(3) { top: 15%; left: 86%; animation-delay: 1.2s; font-size: 5rem; }
+        .bg-heart:nth-child(4) { top: 82%; left: 78%; animation-delay: 4s; }
+        .bg-heart:nth-child(5) { top: 40%; left: 12%; animation-delay: 0.8s; }
+        .bg-heart:nth-child(6) { top: 20%; left: 50%; animation-delay: 6s; }
+        .bg-heart:nth-child(7) { top: 60%; left: 70%; animation-delay: 3s; }
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); opacity: 0.15; }
+            50% { transform: translateY(-30px) rotate(12deg); opacity: 0.3; }
+            100% { transform: translateY(0px) rotate(0deg); opacity: 0.15; }
+        }
+
+        /* main card – like a treasured letter */
+        .page-card {
+            background: rgba(255, 250, 245, 0.8);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-radius: 48px 24px 56px 24px;
+            box-shadow: 0 30px 45px -15px rgba(180, 60, 80, 0.3),
+                        0 0 0 2px rgba(255, 200, 200, 0.6) inset,
+                        0 0 0 5px rgba(255, 240, 240, 0.5) inset;
+            max-width: 950px;
+            width: 100%;
+            padding: 2.2rem 2rem;
+            position: relative;
+            z-index: 20;
+            transition: all 0.3s;
+            border: 1px solid #ffc0cb;
+        }
+
+        /* page navigation (invisible, becomes visible) */
+        .next-btn, .end-btn {
+            background: #ff8c9f;
+            border: none;
+            padding: 14px 38px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border-radius: 60px;
+            color: white;
+            text-shadow: 0 1px 4px #970033;
+            box-shadow: 0 10px 0 #b3465a, 0 12px 24px rgba(200, 90, 110, 0.4);
+            cursor: pointer;
+            transition: 0.06s linear;
+            letter-spacing: 2px;
+            margin: 20px auto 10px;
+            border: 2px solid #fff5f7;
+            display: inline-block;
+        }
+        .next-btn:hover, .end-btn:hover {
+            background: #ffa5b6;
+            transform: translateY(-4px);
+            box-shadow: 0 14px 0 #b3465a, 0 22px 36px #ff869a;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 30px;
+        }
+
+        /* hide/show pages */
+        .page {
+            display: none;
+        }
+        .active-page {
+            display: block;
+        }
+
+        /* ---------- PAGE 0 : HOME / VALENTINE QUESTION ---------- */
+        .heart-title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #b3434b;
+            text-shadow: 0 2px 12px #ffb6c1;
+            margin-bottom: 15px;
+        }
+        .sub-header {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #9f4953;
+            border-bottom: 3px dotted #ffb0bd;
+            padding-bottom: 18px;
+            margin-bottom: 25px;
+        }
+        .btn-valentine {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+        }
+        .btn {
+            padding: 18px 44px;
+            font-size: 1.9rem;
+            font-weight: 700;
+            border-radius: 100px;
+            border: 3px solid white;
+            cursor: pointer;
+            box-shadow: 0 14px 0 #9f6f7a, 0 12px 30px rgba(150, 60, 70, 0.3);
+            transition: all 0.06s;
+            letter-spacing: 3px;
+        }
+        .yes-btn {
+            background: #ff7a8f;
+            color: white;
+            text-shadow: 0 2px 5px #a13344;
+            box-shadow: 0 12px 0 #b15b68, 0 12px 28px #ff98a8;
+        }
+        .yes-btn:hover {
+            background: #ff95a7;
+            transform: translateY(-5px);
+            box-shadow: 0 17px 0 #b15b68, 0 22px 40px #ff859b;
+        }
+        .no-btn {
+            background: #ffe2e6;
+            color: #90444e;
+            box-shadow: 0 12px 0 #c7848f, 0 8px 20px #c07a84;
+            position: relative;
+        }
+        .reply-message {
+            text-align: center;
+            font-size: 1.7rem;
+            background: rgba(255, 235, 215, 0.9);
+            border-radius: 50px;
+            padding: 1.2rem;
+            margin: 15px 0 0;
+            color: #b13b4b;
+            border: 4px dashed #ff99aa;
+            font-weight: 600;
+        }
+
+        /* ----- PAGE 1 : ENVELOPE & LOVE LETTER ----- */
+        .envelope-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 15px 0 30px;
+        }
+        .envelope {
+            font-size: 10rem;
+            cursor: pointer;
+            transition: 0.2s;
+            filter: drop-shadow(0 20px 18px rgba(180, 70, 90, 0.3));
+            background: rgba(255, 225, 230, 0.4);
+            border-radius: 40px;
+            padding: 0 20px;
+        }
+        .envelope:hover {
+            transform: scale(1.08);
+            filter: drop-shadow(0 25px 22px rgba(200, 90, 110, 0.5));
+        }
+        .envelope-text {
+            font-size: 1.7rem;
+            color: #712e3a;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .love-letter-content {
+            background: #fff9f2;
+            border-radius: 32px 8px 32px 8px;
+            padding: 2rem 2rem;
+            box-shadow: 0 12px 0 #e38e9b, 0 18px 30px rgba(170, 70, 80, 0.15);
+            border: 2px solid #ffe6e9;
+            font-size: 1.25rem;
+            line-height: 1.7;
+            color: #342226;
+            margin-top: 35px;
+        }
+        .tamil-words {
+            background: #ffebef;
+            padding: 12px 18px;
+            border-radius: 50px;
+            color: #9d3341;
+            font-weight: 700;
+            display: inline-block;
+            margin: 10px 0;
+        }
+
+        /* PAGE 2 : her favourites – floral, dessert, dreams */
+        .fav-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+            margin: 35px 0;
+        }
+        .fav-item {
+            background: white;
+            border-radius: 32px;
+            padding: 20px 18px 25px;
+            width: 220px;
+            text-align: center;
+            box-shadow: 0 12px 0 #dc9aa5, 0 20px 30px rgba(160, 80, 90, 0.2);
+            border: 2px solid #ffeaee;
+        }
+        .fav-img {
+            font-size: 4.2rem;
+            line-height: 1.2;
+            margin-bottom: 5px;
+        }
+        .fav-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #a13847;
+            margin-bottom: 8px;
+        }
+        .fav-desc {
+            font-size: 0.98rem;
+            color: #513236;
+            background: #fff1f3;
+            padding: 10px;
+            border-radius: 22px;
+        }
+
+        /* PAGE 3 : memory pictures */
+        .memory-pics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        .memory-frame {
+            background: white;
+            padding: 15px 15px 20px;
+            border-radius: 24px;
+            box-shadow: 0 12px 0 #c48691, 0 28px 36px rgba(160, 70, 80, 0.2);
+            transform: rotate(-1deg);
+            width: 200px;
+            border: 3px solid #fff1f3;
+        }
+        .memory-frame:hover { transform: rotate(1.5deg) scale(1.03); }
+        .memory-img {
+            font-size: 5rem;
+            background: #ffeef0;
+            border-radius: 16px;
+            padding: 8px;
+        }
+        .memory-caption {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #6b2f38;
+            margin-top: 10px;
+        }
+
+        /* PAGE 4 : video player */
+        .video-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin: 25px 0;
+        }
+        .video-box {
+            background: #330e14;
+            border-radius: 36px;
+            padding: 12px;
+            box-shadow: 0 18px 0 #7f4752, 0 30px 40px #b36b76;
+            width: 50%;
+            max-width: 560px;
+        }
+        .video-placeholder {
+            background: #1f090c;
+            border-radius: 28px;
+            padding: 20px 10px;
+            color: #ffc0cb;
+            font-size: 1.8rem;
+            text-align: center;
+            border: 3px solid #ff9eb2;
+        }
+        .video-btn {
+            background: #ffb6c1;
+            padding: 14px 32px;
+            border-radius: 50px;
+            border: 0;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #4f1d24;
+            box-shadow: 0 8px 0 #b3626f;
+            cursor: pointer;
+        }
+
+        /* responsiveness */
+        @media (max-width: 650px) {
+            .page-card { padding: 1.5rem; }
+            .heart-title { font-size: 2rem; }
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap');
+    </style>
+</head>
+<body>
+    <div class="bg-hearts">
+        <div class="bg-heart">❤️</div><div class="bg-heart">🧡</div><div class="bg-heart">💛</div>
+        <div class="bg-heart">💖</div><div class="bg-heart">💗</div><div class="bg-heart">💘</div>
+        <div class="bg-heart">💕</div>
+    </div>
+
+    <!-- ========== MULTI-PAGE VALENTINE EXPERIENCE ========== -->
+    <main class="page-card" id="mainApp">
+        <!-- PAGE 0 : HOME / VALENTINE QUIZ + ESCAPE NO BUTTON -->
+        <div id="page0" class="page active-page">
+            <div class="heart-title"><span>💘 To My ANIOL 💘</span></div>
+             <div style="text-align:center;">
+            <div class="tamil-words">this little website was made for you 💞<br>
+                every heart beats faster when you're near,</div></div><br>
+            <div class="sub-header">💌 will you be my valentine? 💌</div>
+            <div style="font-size:1.8rem; text-align:center; color:#a73c48;"> your answer will appear here Baby ❤️</div>
+            
+            <div class="btn-valentine">
+                <button class="btn yes-btn" id="yesBtn0">❤️ YES</button>
+                <button class="btn no-btn" id="noBtn0">💔 no</button>
+            </div>
+            <div id="replyMessage0" class="reply-message">✨ waiting for your answer, pattukutty ✨</div>
+            <!-- next button hidden until envelope page activated later -->
+        </div>
+
+        <!-- PAGE 1 : ENVELOPE & LOVE LETTER (with tamil warmth) -->
+        <div id="page1" class="page">
+            <div style="text-align:center;">
+                <h2 style="color:#ad3a49; font-size:2.2rem;">💌 for you, ammukutty 💌</h2>
+                <div class="envelope-container">
+                    <div class="envelope" id="envelopeBtn">💌</div>
+                    <span class="envelope-text">touch the envelope, my love</span>
+                </div>
+                <!-- hidden love letter, revealed on click -->
+                <div id="loveLetterReveal" style="display: none;" class="love-letter-content">
+                    <p style="font-size:1.5rem; color:#ad3a4a;">Hii Pattutu ❤️</p>
+                    <p>27 August 2025 — the day my heart found its courage, and I confessed what it had been quietly holding. 22 September 2025 — the sweetest day of my life, when you accepted me and confessed back, turning my hopes into happiness. From then on, every date, every moment became a gift — filled with your love, your care, your warmth. You turned ordinary days into memories I’ll treasure forever.</p>
+                    <p>New Year 2026 — unforgettable in every way. Your smile glowing beneath the firecrackers, lighting up the night and my entire world.</p>
+                    <p>I know we’ve faced so much, and I know we may face even more in the future. There are moments when we miss each other deeply, and the distance feels heavy… but still. 
+                        <p>No matter what comes, my love for you will never change.</p>
+                        <p>I will always love you.</p>
+                        <p>I will always take care of you and everything</p><br> 
+                    <span style="font-size:1.7rem;">💕 Nairukken Pathukkalam 💕</span></p>
+                    <div class="tamil-words">
+                        Pattukky, Chellakutty, Ammukutty, My dear Pondati — You are My Evrything ❤️
+                    </div>
+                    <p style="margin-top:12px;">– un anbu, always.</p>
+                </div>
+                <div class="nav-container" id="nextBtn1Container" style="display: none;">
+                    <button class="next-btn" id="nextBtn1">🌹 next page 🌹</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 2 : her favourite things (flowers, dessert, destiny) + images via emoji/style -->
+        <div id="page2" class="page">
+            <h2 style="color:#b04150; font-size:2rem; text-align:center;">Your favorites</h2>
+            <div class="fav-grid">
+                <div class="fav-item">
+                    <img src="Image/Tulip.jpg" alt="27 Aug 2025" style="width:100%; border-radius:16px;">
+                    <div class="fav-title">white tulip</div>
+                    <div class="fav-desc">pure like your heart, every petal whispers your name. you bloom in my life endlessly.</div>
+                </div>
+                <div class="fav-item">
+                    <img src="Image/Dessert.jpg" alt="27 Aug 2025" style="width:100%; border-radius:16px;">
+                    <div class="fav-title">cake · ice · waffle</div>
+                    <div class="fav-desc">sweet as your laughter, cold as the ice we share, warm as waffle mornings with you.</div>
+                </div>
+                <div class="fav-item">
+                   <img src="Image/destiny.jpg" alt="27 Aug 2025" style="width:100%; border-radius:16px;">
+                    <div class="fav-title">France, Newland, Swaziland, Korea</div>
+                    <div class="fav-desc">France: city of love. Newland: our undiscovered world. Swaziland: royal heart. Korea: autumn leaves with you. someday, we'll walk there.</div>
+                </div>
+            </div>
+            <!-- embedded image script representation - actual images not possible, but we add symbolic -->
+            <div style="text-align:center; background: #ffeef0; border-radius:40px; padding:12px; margin:15px 0;">
+                <span style="font-size:1.4rem; color:#b13b4b;"><p>You love sleeping… a lot 😴</p>
+                <p>You stay awake at night, lost in your own world 🌙</p>
+                <p>You listen to music like it’s talking directly to your heart 🎧</p><br>
+            <p>You get tired easily, but you still make time for me.</p>
+        <p>You pretend you don’t need care, but you love being pampered.</p><br>
+    <p>And me?</p>
+<p>I love all of it — your habits, your moods, your midnight thoughts, and even your sleepy replies.</p>
+<p>No matter what, I’ll always love you and take care of you… especially when you forget to sleep 😌❤️</p></span>
+                <p style="font-size:1.2rem;"><i>“every destination with you is home”</i></p>
+            </div>
+            <div class="nav-container">
+                <button class="next-btn" id="nextBtn2">💞 next · our memories 💞</button>
+            </div>
+        </div>
+
+        <!-- PAGE 3 : memory pictures (symbolic illustrations) -->
+        <div id="page3" class="page">
+            <h2 style="color:#b04150; font-size:2rem; text-align:center;">our memories </h2>
+            <div class="memory-pics">
+                <div class="memory-frame">
+                    <div class="memory-img"><img src="Image/Photo29.jpg" alt="27 Aug 2025" style="width:100%; border-radius:16px;"></div>
+                    <div class="memory-caption">27 Aug 2025 – you said yes</div>
+                </div>
+                <div class="memory-frame">
+                    <div class="memory-img"><img src="Image/Photo27.jpg" alt="27 Aug 2025" style="width:100%; border-radius:16px;"></div>
+                    <div class="memory-caption">22 Sep 2025 – your confession</div>
+                </div>
+                <div class="memory-frame">
+                    <div class="memory-img"><img src="Image/Photo28.jpg" alt="27 Aug 2025" style="width:100%; border-radius:16px;"></div>
+                    <div class="memory-caption">New year 2026 – starlit night</div>
+                </div>
+                <div class="memory-frame">
+                    <div class="memory-img"><img src="Image/Photo26.jpg" alt="27 Aug 2025" style="width:100%; border-radius:16px;"></div>
+                </div>
+                                <div class="memory-frame">
+                    <div class="memory-img"><img src="Image/Photo25.jpg" alt="27 Aug 2025" style="width:100%; border-radius:16px;"></div>
+                    <div class="memory-caption">27 Aug 2025 – you said yes</div>
+                </div>
+                <div class="memory-frame">
+                    <div class="memory-img"><img src="Image/Photo24.jpg" alt="27 Aug 2025" style="width:100%; border-radius:16px;"></div>
+                    <div class="memory-caption">22 Sep 2025 – your confession</div>
+                </div>
+                <div class="memory-frame">
+                    <div class="memory-img"><img src="Image/Photo22.jpg" alt="27 Aug 2025" style="width:100%; border-radius:16px;"></div>
+                    <div class="memory-caption">New year 2026 – starlit night</div>
+                </div>
+                <div class="memory-frame">
+<div class="memory-img"><img src="Image/Photo23.jpg" alt="27 Aug 2025" style="width:100%; border-radius:16px;"></div>
+                    <div class="memory-caption">rainy days, coffee & us</div>
+                </div>
+                                <div class="memory-frame">
+                    <div class="memory-img"><img src="Image/Photo21.jpg" alt="27 Aug 2025" style="width:100%; border-radius:16px;"></div>
+                    <div class="memory-caption">27 Aug 2025 – you said yes</div>
+                </div>
+                <div class="memory-frame">
+                    <div class="memory-img"><img src="Image/Photo18.jpg" alt="27 Aug 2025" style="width:100%; border-radius:16px;"></div>
+                    <div class="memory-caption">22 Sep 2025 – your confession</div>
+                </div>
+                <div class="memory-frame">
+                    <div class="memory-img"><img src="Image/Photo19.jpg" alt="27 Aug 2025" style="width:100%; border-radius:16px;"></div>
+                    <div class="memory-caption">New year 2026 – starlit night</div>
+                </div>
+                <div class="memory-frame">
+<div class="memory-img"><img src="Image/Photo17.jpg" alt="27 Aug 2025" style="width:100%; border-radius:16px;"></div>
+                    <div class="memory-caption">rainy days, coffee & us</div>
+                </div>
+                                <div class="memory-frame">
+                    <div class="memory-img"><img src="Image/Photo16.jpg" alt="27 Aug 2025" style="width:100%; border-radius:16px;"></div>
+                    <div class="memory-caption">22 Sep 2025 – your confession</div>
+                </div>
+                <div class="memory-frame">
+                    <div class="memory-img"><img src="Image/Photo15.jpg" alt="27 Aug 2025" style="width:100%; border-radius:16px;"></div>
+                    <div class="memory-caption">New year 2026 – starlit night</div>
+                </div>
+                <div class="memory-frame">
+<div class="memory-img"><img src="Image/Photo13.jpg" alt="27 Aug 2025" style="width:100%; border-radius:16px;"></div>
+                    <div class="memory-caption">rainy days, coffee & us</div>
+                </div>
+                                <div class="memory-frame">
+                    <div class="memory-img"><img src="Image/Photo14.jpg" alt="27 Aug 2025" style="width:100%; border-radius:16px;"></div>
+                    <div class="memory-caption">27 Aug 2025 – you said yes</div>
+                </div>
+                <div class="memory-frame">
+                    <div class="memory-img"><img src="Image/Photo11.jpg" alt="27 Aug 2025" style="width:100%; border-radius:16px;"></div>
+                    <div class="memory-caption">22 Sep 2025 – your confession</div>
+                </div>
+                                                <div class="memory-frame">
+                    <div class="memory-img"><img src="Image/Photo5.jpg" alt="27 Aug 2025" style="width:100%; border-radius:16px;"></div>
+                    <div class="memory-caption">27 Aug 2025 – you said yes</div>
+                </div>
+                                <div class="memory-frame">
+                    <div class="memory-img"><img src="Image/Photo12.jpg" alt="27 Aug 2025" style="width:100%; border-radius:16px;"></div>
+                    <div class="memory-caption">New year 2026 – starlit night</div>
+                </div>
+                
+                <div class="memory-frame">
+                   <div class="memory-img"><img src="Image/Photo4.jpg" alt="27 Aug 2025" style="width:100%; border-radius:16px;"></div>
+                    <div class="memory-caption">22 Sep 2025 – your confession</div>
+                </div>
+                <div class="memory-frame">
+                    <div class="memory-img"><img src="Image/Photo8.jpg" alt="27 Aug 2025" style="width:100%; border-radius:16px;"></div>
+                    <div class="memory-caption">New year 2026 – starlit night</div>
+                </div>
+                
+                <div class="memory-frame">
+<div class="memory-img"><img src="Image/Photo9.jpg" alt="27 Aug 2025" style="width:100%; border-radius:16px;"></div>
+                    <div class="memory-caption">rainy days, coffee & us</div>
+                </div>
+
+                <div class="memory-frame">
+                    <div class="memory-img"><img src="Image/Photo3.jpg" alt="27 Aug 2025"  style="width:100%; border-radius:16px;"></div>
+                    <div class="memory-caption">New year 2026 – starlit night</div>
+                </div>
+                
+                <div class="memory-frame">
+<div class="memory-img"><img src="Image/Photo6.1.jpg" alt="27 Aug 2025" style="width:100%; border-radius:16px;"></div>
+                    <div class="memory-caption">rainy days, coffee & us</div>
+                </div>
+                                                <div class="memory-frame">
+                    <div class="memory-img"><img src="Image/Photo7.jpg" alt="27 Aug 2025" style="width:100%; border-radius:16px;"></div>
+                    <div class="memory-caption">27 Aug 2025 – you said yes</div>
+                </div>
+                <div class="memory-frame">
+                   <div class="memory-img"><img src="Image/Photo1.jpg"  alt="27 Aug 2025" style="width:100%; border-radius:16px;"></div>
+                    <div class="memory-caption">22 Sep 2025 – your confession</div>
+                </div>
+                <div class="memory-frame">
+                    <div class="memory-img"><img src="Image/Photo2.jpg" alt="27 Aug 2025" style="width:100%; border-radius:16px;"></div>
+                    <div class="memory-caption">New year 2026 – starlit night</div>
+                </div>
+                <div class="memory-frame">
+<div class="memory-img"><img src="Image/Photo.jpg" alt="27 Aug 2025" style="width:100%; border-radius:16px;"></div>
+                    <div class="memory-caption">rainy days, coffee & us</div>
+                </div>
+            </div>
+            <div style="text-align:center; color:#7c3841;">📸 every picture a love story. more frames to fill, with you.</div>
+            <div class="nav-container">
+                <button class="next-btn" id="nextBtn3">🎬 Next - video message 🎬</button>
+            </div>
+        </div>
+
+        <!-- PAGE 4 : VIDEO & END BUTTON (brings back to home) -->
+        <div id="page4" class="page">
+            <h2 style="color:#b04150; font-size:2.1rem; text-align:center;">a message for my valentine 🎥</h2>
+            <div class="video-section">
+                <div class="video-box">
+                    <div class="video-placeholder" id="videoPlayer">
+                            <video id="myVideo" width="100%" controls style="border-radius:24px;">
+        <source src="Vid/Val.MOV" type="video/mp4">
+        Your browser doesn't support video.
+    </video>
+                    </div>
+                </div>
+                <div>
+                    <button id="playVideoBtn" class="video-btn">🎬 play our story</button>
+                </div>
+                <p style="font-size:1.2rem; color:#972e3f;">என் காதல், un video message kettu en heart full happy ❤️</p>
+            </div>
+            <div class="nav-container" id="endBtnContainer">
+                <button class="end-btn" id="endBtn">🏠 END · back to home 🏠</button>
+            </div>
+        </div>
+
+        <!-- hidden navigation area for page1->page2 etc. managed via JS -->
+    </main>
+
+    <script>
+        (function() {
+            "use strict";
+
+            // ---------- PAGE MANAGEMENT ----------
+            const pages = {
+                0: document.getElementById('page0'),
+                1: document.getElementById('page1'),
+                2: document.getElementById('page2'),
+                3: document.getElementById('page3'),
+                4: document.getElementById('page4')
+            };
+
+            function showPage(pageId) {
+                Object.values(pages).forEach(p => p.classList.remove('active-page'));
+                pages[pageId].classList.add('active-page');
+            }
+
+            // ---------- HOME PAGE (0) : YES BUTTON / ESCAPE NO BUTTON ----------
+            const yesBtn0 = document.getElementById('yesBtn0');
+            const noBtn0 = document.getElementById('noBtn0');
+            const reply0 = document.getElementById('replyMessage0');
+
+            // YES button — sweet replies
+            const yesReplies = [
+                "🎉 happy valentine's day, Pondatiii...!",
+                "🥰 YES! you made my whole year! ❤️",
+                "💖 i knew it! love you, chellakutty!",
+                "💘 ennoda vazhkai, thank you for saying yes!",
+                "💞 Nairukken Pathukkalam forever!"
+            ];
+            yesBtn0.addEventListener('click', function() {
+                const msg = yesReplies[Math.floor(Math.random() * yesReplies.length)];
+                reply0.innerHTML = `❤️❤️ ${msg} ❤️❤️`;
+                reply0.style.background = "#ffd9e2";
+                reply0.style.border = "6px ridge #ff99aa";
+            });
+
+            // ---------- ESCAPE NO BUTTON : cannot be clicked, runs away ----------
+            // make it "escape" – move randomly on hover / touch
+            noBtn0.addEventListener('mouseover', function(e) {
+                const x = Math.random() * (window.innerWidth - 200);
+                const y = Math.random() * (window.innerHeight - 200);
+                noBtn0.style.position = 'fixed';
+                noBtn0.style.left = x + 'px';
+                noBtn0.style.top = y + 'px';
+                noBtn0.style.transition = 'left 0.2s, top 0.2s';
+            });
+            noBtn0.addEventListener('click', function() {
+                // even if someone manages to click, show sweet message and move again
+                reply0.innerHTML = "😘 haha you can't say no! i love you, pondati! 💕";
+                reply0.style.background = "#ffe0e6";
+                // escape again
+                const x = Math.random() * (window.innerWidth - 200);
+                const y = Math.random() * (window.innerHeight - 200);
+                noBtn0.style.left = x + 'px';
+                noBtn0.style.top = y + 'px';
+            });
+
+            // ---------- PAGE 1 : ENVELOPE CLICK -> REVEAL LOVE LETTER & NEXT BUTTON ----------
+            const envelope = document.getElementById('envelopeBtn');
+            const loveLetterDiv = document.getElementById('loveLetterReveal');
+            const nextBtn1Container = document.getElementById('nextBtn1Container');
+            const nextBtn1 = document.getElementById('nextBtn1');
+
+            envelope.addEventListener('click', function() {
+                loveLetterDiv.style.display = 'block';
+                nextBtn1Container.style.display = 'flex';
+                // also hide envelope or keep – but we keep it, letter revealed
+            });
+
+            // next button page1 -> page2
+            nextBtn1.addEventListener('click', function() {
+                showPage(2);
+            });
+
+            // ---------- PAGE 2 NEXT (to page3) ----------
+            document.getElementById('nextBtn2').addEventListener('click', function() {
+                showPage(3);
+            });
+
+            // ---------- PAGE 3 NEXT (to page4) ----------
+            document.getElementById('nextBtn3').addEventListener('click', function() {
+                showPage(4);
+            });
+
+            // ---------- PAGE 4 VIDEO SCRIPT ----------
+            const playBtn = document.getElementById('playVideoBtn');
+            const videoDiv = document.getElementById('videoPlayer');
+
+            playBtn.addEventListener('click', function() {
+                // simulate video play - change content to moving message
+                videoDiv.innerHTML = '🎥✨ "Nairukken Pathukkalam, pattukky ... neenga en vasam, ungalukku en anbu. Happy Valentine\'s day, pondati." ✨🎥';
+                videoDiv.style.background = "#331116";
+                videoDiv.style.color = "#ffe2ec";
+                videoDiv.style.fontSize = "1.5rem";
+                videoDiv.style.padding = "50px 15px";
+                videoDiv.style.transition = "0.3s";
+            });
+
+            // END BUTTON – brings back to HOME (page0)
+            document.getElementById('endBtn').addEventListener('click', function() {
+                showPage(0);
+                // reset no button position? not necessary, but we reset style to relative?
+                noBtn0.style.position = 'static'; // back to normal flow for home
+                noBtn0.style.left = 'auto';
+                noBtn0.style.top = 'auto';
+                // also optionally reset envelope / letter for next time
+                loveLetterDiv.style.display = 'none';
+                nextBtn1Container.style.display = 'none';
+                // reset reply message to default
+                reply0.innerHTML = '✨ waiting for your answer, pattukky ✨';
+                // reset video placeholder
+                videoDiv.innerHTML = '▶️ VALENTINE VIDEO<br> <span style="font-size:1.2rem;">“Nairukken Pathukkalam”</span>';
+                videoDiv.style.background = "#1f090c";
+                videoDiv.style.color = "#ffc0cb";
+                videoDiv.style.fontSize = "1.8rem";
+                videoDiv.style.padding = "60px 20px";
+            });
+
+            // ---------- additional: start page from home (0) ----------
+            showPage(0);
+
+            // also allow to go to page1 from somewhere? but we need to go to envelope page manually.
+            // we add after YES click maybe show hint, but also we create a 'next' from home to envelope? 
+            // we want: first page is question, then after some interaction, but the envelope is page1.
+            // we add an invisible trigger: double click on heart title to open envelope page.
+            // for seamless flow, we add a button '💌 open letter' but we keep it clean: from home we click a special heart.
+            // better: I add a small "open our letter →" button on home page to go to page1.
+            const goToEnvelopeBtn = document.createElement('button');
+            goToEnvelopeBtn.innerHTML = '💌 open My love letter 💌';
+            goToEnvelopeBtn.style.background = '#ffb3bd';
+            goToEnvelopeBtn.style.border = 'none';
+            goToEnvelopeBtn.style.padding = '16px 28px';
+            goToEnvelopeBtn.style.borderRadius = '50px';
+            goToEnvelopeBtn.style.fontSize = '1.4rem';
+            goToEnvelopeBtn.style.margin = '20px auto';
+            goToEnvelopeBtn.style.boxShadow = '0 8px 0 #b3727d';
+            goToEnvelopeBtn.style.color = '#481f26';
+            goToEnvelopeBtn.style.fontWeight = 'bold';
+            goToEnvelopeBtn.style.cursor = 'pointer';
+            goToEnvelopeBtn.style.display = 'inline-block';
+            pages[0].appendChild(goToEnvelopeBtn);
+            goToEnvelopeBtn.addEventListener('click', function() {
+                showPage(1);
+                // reset no button position
+                noBtn0.style.position = 'static';
+            });
+
+            // also when we click yes, maybe suggest to open letter. but fine.
+        })();
+    </script>
+
+    <!-- tiny note: all pages carry valentine soul, with tamil endearments -->
+    <!-- No external deps, fully handcrafted love -->
+</body>
+</html>
